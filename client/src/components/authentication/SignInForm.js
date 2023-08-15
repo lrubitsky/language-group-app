@@ -12,6 +12,7 @@ const SignInForm = () => {
     const { email, password } = payload;
     const emailRegexp = config.validation.email.regexp;
     let newErrors = {};
+
     if (!email.match(emailRegexp)) {
       newErrors = {
         ...newErrors,
