@@ -7,6 +7,9 @@ const RegistrationForm = () => {
     email: "",
     password: "",
     passwordConfirmation: "",
+    username: "",
+    firstName: "",
+    lastName: ""
   });
 
   const [errors, setErrors] = useState({});
@@ -15,13 +18,51 @@ const RegistrationForm = () => {
 
   const validateInput = (payload) => {
     setErrors({});
-    const { email, password, passwordConfirmation } = payload;
+    const { email, password, passwordConfirmation, username, firstName, lastName } = payload;
     const emailRegexp = config.validation.email.regexp;
     let newErrors = {};
+
+
+    if (username.length > 36) {
+      newErrors = {
+        ...newErrors,
+        username: "must be no more than 36 characters"
+      };
+    }
+
+    if (username.trim() == "") {
+      newErrors = {
+        ...newErrors,
+        username: "is required",
+      };
+    }
+
+    if (firstName.trim() == "") {
+      newErrors = {
+        ...newErrors,
+        lastName: "is required",
+      };
+    }
+
+    if (lastName.trim() == "") {
+      newErrors = {
+        ...newErrors,
+        lastName: "is required",
+      };
+    }
+
     if (!email.match(emailRegexp)) {
       newErrors = {
         ...newErrors,
         email: "is invalid",
+      };
+    }
+
+
+    if (password.length < 8) {
+      newErrors = {
+        ...newErrors,
+        password: "must be at least 8 characters"
       };
     }
 
@@ -97,6 +138,33 @@ const RegistrationForm = () => {
           </label>
         </div>
         <div>
+        <label>
+            Username
+            <input
+              type="text"
+              name="username"
+              value={userPayload.username}
+              onChange={onInputChange}
+            />
+          </label>
+          <label>
+            First Name
+            <input
+              type="text"
+              name="firstName"
+              value={userPayload.firstName}
+              onChange={onInputChange}
+            />
+          </label>
+          <label>
+            Last Name
+            <input
+              type="text"
+              name="lastName"
+              value={userPayload.lastName}
+              onChange={onInputChange}
+            />
+          </label>
           <label>
             Password
             <input
