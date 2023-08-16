@@ -6,6 +6,7 @@ module.exports = {
   },
   rules: {
     "prettier/prettier": "error",
+    "indent": "error",
     "eslint no-param-reassign": ["error", { props: false }]
   },
   plugins: ["prettier"]
