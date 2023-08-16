@@ -14,7 +14,8 @@ class LanguageGroup extends Model {
                 location: { type: "string" },
                 englishLevel: { type: "string" },
                 minMembers: { type: ["integer", "string"], minimum: 2, maximum: 6 },
-                maxMembers: { type: ["integer", "string"], minimum: 2, maximum: 6 }
+                maxMembers: { type: ["integer", "string"], minimum: 2, maximum: 6 },
+                placeCategory: { type: "string" }
             }
         }
     }

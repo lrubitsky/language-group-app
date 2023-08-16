@@ -8,28 +8,32 @@ class LanguageGroupSeeder {
                 location: "North End, Boston, MA",
                 englishLevel: "low",
                 minMembers: 3,
-                maxMembers: 5
+                maxMembers: 5,
+                placeCategory: "cafe"
             },
             {
                 topic: "Careers",
                 location: "The Esplanade, Cambridge, MA",
                 englishLevel: "intermediate",
                 minMembers: 2,
-                maxMembers: 6
+                maxMembers: 6,
+                placeCategory: "library"
             },
             {
                 topic: "Travel",
                 location: "Revere Beach, Revere, MA",
                 englishLevel: "high",
                 minMembers: 4,
-                maxMembers: 5
+                maxMembers: 5,
+                placeCategory: "park"
             },
             {
                 topic: "Relationships",
                 location: "Central Square, Cambridge, MA",
                 englishLevel: "low",
                 minMembers: 2,
-                maxMembers: 5
+                maxMembers: 5,
+                placeCategory: "mall"
             },
             {
                 topic: "Community",
