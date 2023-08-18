@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 const MapSearch = ({ setSearchQuery, searchQuery }) => {
-  //   console.log("HEY", placeCategory);
   const [searchInput, setSearchInput] = useState(searchQuery);
 
   const handleChange = (event) => {

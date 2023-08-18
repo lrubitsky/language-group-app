@@ -7,7 +7,7 @@
  */
 exports.up = async (knex) => {
   return knex.schema.table("languageGroups", (table) => {
-    table.string("placeCategory");
+    table.bigInteger("creatorId").unsigned().notNullable().index().references("users.id");
   });
 };
 
@@ -16,6 +16,6 @@ exports.up = async (knex) => {
  */
 exports.down = (knex) => {
   return knex.schema.table("languageGroups", (table) => {
-    table.dropColumn("placeCategory");
+    table.dropColumn("creatorId");
   });
 };
