@@ -13,6 +13,7 @@ const LanguageGroupsList = (props) => {
         throw error;
       }
       const responseBody = await response.json();
+
       setLanguageGroupList(responseBody.languageGroups);
     } catch (error) {
       console.error(`Error in Fetch: ${error.message}`);
@@ -24,8 +25,10 @@ const LanguageGroupsList = (props) => {
   }, []);
 
   const languageGroupTiles = languageGroupList.map((languageGroup) => {
+    console.log("FROM THE LIST PAGE, id IS ", languageGroup.id);
     return <LanguageGroupsTile key={languageGroup.id} languageGroup={languageGroup} />;
   });
+
   return (
     <div className="background">
       <h1>This is the open group list</h1>
