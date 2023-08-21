@@ -32,7 +32,26 @@ class User extends uniqueFunc(Model) {
         cryptedPassword: { type: "string", minLength: 8 },
         username: { type: "string", maxLength: 36 },
         firstName: { type: "string" },
-        lastName: {type: "string"}
+        lastName: { type: "string" },
+        nativeLanguage: { type: "string" },
+        englishLevel: { type: "string" },
+        ageRange: { type: "string" },
+        location: { type: "string" },
+        introduction: { type: "string" },
+      },
+    };
+  }
+
+  static get relationMappings() {
+    const { LanguageGroup } = require("./index.js");
+    return {
+      languageGroupsCreated: {
+        relation: Model.HasManyRelation,
+        modelClass: LanguageGroup,
+        join: {
+          from: "users.id",
+          to: "languageGroups.creatorId",
+        },
       },
     };
   }

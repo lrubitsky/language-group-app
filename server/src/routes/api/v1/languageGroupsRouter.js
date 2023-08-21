@@ -1,12 +1,14 @@
 import express from "express";
 import { LanguageGroup } from "../../../models/index.js";
+import LanguageGroupSerializer from "../../../../serializers/LanguageGroupSerializer.js";
 
 const languageGroupsRouter = new express.Router();
 
 languageGroupsRouter.get("/", async (req, res) => {
   try {
     const languageGroupsData = await LanguageGroup.query();
-    return res.status(200).json({ languageGroups: languageGroupsData });
+    const serializedLanguageGroup = await LanguageGroupSerializer.getSummary(languageGroupsData);
+    return res.status(200).json({ languageGroups: serializedLanguageGroup });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ errors: error });
@@ -14,19 +16,18 @@ languageGroupsRouter.get("/", async (req, res) => {
 });
 
 languageGroupsRouter.get("/:id", async (req, res) => {
-  console.log("HELLO")
   try {
     const { id } = req.params;
-    console.log("The id is ", `${id}`)
     const languageGroupData = await LanguageGroup.query().findById(id);
-    console.log("Language Group Data from Router ", languageGroupData)
     if (languageGroupData) {
-      res.status(200).json({ languageGroup: languageGroupData });
+      const serializedLanguageGroup = await LanguageGroupSerializer.getInfo(languageGroupData);
+      res.status(200).json({ languageGroup: serializedLanguageGroup });
     } else {
-      console.log(error)
+      console.log(error);
       return res.status(404).json({ errors: error });
     }
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ errors: error });
   }
 });

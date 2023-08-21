@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 const MapSearch = ({ setSearchQuery, searchQuery }) => {
-  //   console.log("HEY", placeCategory);
   const [searchInput, setSearchInput] = useState(searchQuery);
 
   const handleChange = (event) => {
@@ -17,15 +16,21 @@ const MapSearch = ({ setSearchQuery, searchQuery }) => {
   }, [searchQuery]);
 
   return (
-    <>
+    <div className="search-container">
       <label htmlFor="search">
-        <input id="search" type="text" value={searchInput} onChange={handleChange} />
+        <input
+          id="search"
+          type="text"
+          value={searchInput}
+          onChange={handleChange}
+          className="search-input"
+        />
       </label>
 
-      <button className="button" onClick={handleSearch}>
+      <button className="search-button" onClick={handleSearch}>
         Search
       </button>
-    </>
+    </div>
   );
 };
 

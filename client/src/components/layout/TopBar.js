@@ -4,6 +4,9 @@ import SignOutButton from "../authentication/SignOutButton";
 
 const TopBar = ({ user }) => {
   const unauthenticatedListItems = [
+    <li>
+      <Link to="/">Home</Link>
+    </li>,
     <li key="sign-in">
       <Link to="/user-sessions/new">Sign In</Link>
     </li>,
@@ -15,6 +18,12 @@ const TopBar = ({ user }) => {
   ];
 
   const authenticatedListItems = [
+    <li>
+      <Link to="/language-groups">Find Groups</Link>
+    </li>,
+    <li>
+      <Link to="/profile">Your Profile</Link>
+    </li>,
     <li key="sign-out">
       <SignOutButton />
     </li>,
@@ -25,12 +34,6 @@ const TopBar = ({ user }) => {
       <div className="top-bar-left">
         <ul className="menu">
           <li className="menu-text">LANGUAGE GROUPS</li>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/language-groups">Find Groups</Link>
-          </li>
         </ul>
       </div>
       <div className="top-bar-right">

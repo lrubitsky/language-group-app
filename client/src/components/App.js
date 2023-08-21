@@ -10,6 +10,8 @@ import TopBar from "./layout/TopBar";
 import LanguageGroupsList from "./LanguageGroupsList";
 import LanguageGroupShow from "./LanguageGroupShow";
 import LandingPage from "./LandingPage";
+import UserOwnProfileShow from "./UserOwnProfileShow";
+import UserProfileShow from "./UserProfileShow";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -35,6 +37,8 @@ const App = (props) => {
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <Route exact path="/language-groups" component={LanguageGroupsList} />
         <Route exact path="/language-groups/:id" component={LanguageGroupShow} />
+        <Route exact path="/profile" component={UserOwnProfileShow} />
+        <Route exact path="/users/:id" component={UserProfileShow} />
       </Switch>
     </Router>
   );
