@@ -4,12 +4,12 @@ import UserProfileTile from "./UserProfileTile";
 
 const UserOwnProfileShow = (props) => {
   return (
-    <>
+    <div className="background">
       <h1>Your Profile</h1>
       <UserProfileTile />
       <hr />
       <UserProfileForm />
-    </>
+    </div>
   );
 };
 

@@ -8,7 +8,6 @@ languageGroupsRouter.get("/", async (req, res) => {
   try {
     const languageGroupsData = await LanguageGroup.query();
     const serializedLanguageGroup = await LanguageGroupSerializer.getSummary(languageGroupsData);
-    // console.log("SERIALIZED ", serializedLanguageGroup);
     return res.status(200).json({ languageGroups: serializedLanguageGroup });
   } catch (error) {
     console.log(error);
@@ -20,7 +19,6 @@ languageGroupsRouter.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const languageGroupData = await LanguageGroup.query().findById(id);
-    console.log("LANGUAGE GROUP DATA FROM ROUTER, ", languageGroupData);
     if (languageGroupData) {
       const serializedLanguageGroup = await LanguageGroupSerializer.getInfo(languageGroupData);
       res.status(200).json({ languageGroup: serializedLanguageGroup });

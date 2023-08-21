@@ -25,7 +25,6 @@ const LanguageGroupsList = (props) => {
   }, []);
 
   const languageGroupTiles = languageGroupList.map((languageGroup) => {
-    console.log("FROM THE LIST PAGE, id IS ", languageGroup.id);
     return <LanguageGroupsTile key={languageGroup.id} languageGroup={languageGroup} />;
   });
 

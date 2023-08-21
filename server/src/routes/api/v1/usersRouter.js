@@ -1,6 +1,7 @@
 import express from "express";
-import passport from "passport";
+// import passport, { serializeUser } from "passport";
 import { User } from "../../../models/index.js";
+import UserSerializer from "../../../../serializers/UserSerializer.js";
 
 const usersRouter = new express.Router();
 
@@ -40,6 +41,22 @@ usersRouter.post("/", async (req, res) => {
   }
 });
 
-usersRouter.get("/", async (req, res) => {});
+usersRouter.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log("HEY FROM BACKEND");
+    const userData = await User.query().findById(id);
+    const serializedUser = await UserSerializer.getProfileOfOne(userData);
+    if (userData) {
+      res.status(200).json({ profile: serializedUser });
+    } else {
+      console.log(error);
+      return res.status(404).json({ errors: error });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ errors: error });
+  }
+});
 
 export default usersRouter;

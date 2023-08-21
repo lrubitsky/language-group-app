@@ -17,7 +17,7 @@ const UserProfileForm = (props) => {
 
   const addProfile = async () => {
     try {
-      const response = await fetch("api/v1/language-groups", {
+      const response = await fetch("api/v1/users", {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",

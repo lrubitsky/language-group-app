@@ -82,10 +82,10 @@ const JsApiLoaderGoogleMap = ({ searchQuery, setSearchQuery, address, setAddress
   }, [searchQuery, address]);
 
   return (
-    <div className="map">
+    <div className="map-area">
       <MapSearch setSearchQuery={setSearchQuery} searchQuery={searchQuery} />
       <p className="error">{error}</p>
-      <div id="map" style={{ height: 400 }}></div>
+      <div id="map" className="map-image" style={{ height: 400 }}></div>
       <ResultList searchResults={searchResults} />
     </div>
   );

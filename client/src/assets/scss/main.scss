@@ -1,7 +1,7 @@
 @import "./foundation/settings";
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything;
-// place global css here
+
 *,
 *::before,
 *::after {
@@ -12,7 +12,6 @@
   -moz-tab-size: 4;
   tab-size: 4;
 }
-
 
 h1, h2 {
   text-align: center;
@@ -38,25 +37,46 @@ h3 {
   width: 75%;
   text-align: center;
 }
-
-.map {
-  border-color: blueviolet;
-  border-style: groove;
-  border-width: 3px;
-  margin: 2em;
-  padding: 2em;
-}
-
-.groupInfo {
+.info-block {
   background-color: white;
   border-color: blueviolet;
   border-style: groove;
   border-width: 3px;
-  margin: 2em;
+  margin: 2rem;
   margin-left: auto;
   margin-right: auto;
-  padding: 2em;
+  padding: 2rem;
   width: 75%;
   text-align: justify;
-  
+}
+.map-area {
+  margin: 3rem, 2rem;
+  padding: 3rem;
+}
+
+.map-image {
+  border-color: blueviolet;
+  border-style: solid;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+}
+
+.search-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
 }

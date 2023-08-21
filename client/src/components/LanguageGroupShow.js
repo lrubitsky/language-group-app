@@ -20,7 +20,6 @@ const LanguageGroupShow = (props) => {
   const getLanguageGroup = async () => {
     try {
       const languageGroupId = props.match.params.id;
-      console.log("ID", languageGroupId);
       const response = await fetch(`/api/v1/language-groups/${languageGroupId}`);
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`;
@@ -28,7 +27,6 @@ const LanguageGroupShow = (props) => {
         throw error;
       }
       const responseBody = await response.json();
-      console.log("FROM SHOW PAGE, ", responseBody);
       setLanguageGroupRecord(responseBody.languageGroup);
       setSearchQuery(responseBody.languageGroup.placeCategory);
       setAddress(responseBody.languageGroup.location);
@@ -36,8 +34,6 @@ const LanguageGroupShow = (props) => {
       console.error(`Error in Fetch: ${err.message}`);
     }
   };
-
-  console.log("LANGUAGE RECORD, ", languageGroupRecord);
 
   useEffect(() => {
     getLanguageGroup();
@@ -50,7 +46,7 @@ const LanguageGroupShow = (props) => {
   };
   return (
     <div className="background">
-      <div className="groupInfo">
+      <div className="info-block">
         <p>
           Group started by:
           <Link to={`/users/${languageGroupRecord.creatorId}`}>
