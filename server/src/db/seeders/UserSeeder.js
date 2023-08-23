@@ -1,90 +1,46 @@
 import { User } from "../../models/index.js";
+import { faker } from "@faker-js/faker";
 
 class UserSeeder {
   static async seed() {
-    const userData = [
-      {
-        email: "user1@email.com",
-        cryptedPassword: "q3tvgbtrstshdhsh",
-        username: "username1",
-        firstName: "Estela",
-        lastName: "Sanchez",
-        nativeLanguage: "Spanish",
-        englishLevel: "low",
-        ageRange: "30-35",
-        location: "East Boston, Boston, MA",
-        introduction: "Hello!",
-      },
-      {
-        email: "user2@email.com",
-        cryptedPassword: "rhehdndzgdgzsg",
-        username: "username2",
-        firstName: "Ahmed",
-        lastName: "Halaby",
-        nativeLanguage: "Arabic",
-        englishLevel: "intermediate",
-        ageRange: "18-24",
-        location: "Revere, MA",
-        introduction: "I am happy to chat with you!",
-      },
-      {
-        email: "user3@email.com",
-        cryptedPassword: "zgasevzbfzbdvdf",
-        username: "username3",
-        firstName: "Marie",
-        lastName: "Santana",
-        nativeLanguage: "Haitian Creole",
-        englishLevel: "high",
-        ageRange: "45-50",
-        location: "Somerville, MA",
-        introduction: "I love English!",
-      },
-      {
-        email: "user4@email.com",
-        cryptedPassword: "knvndfnkzsndkc",
-        username: "username4",
-        firstName: "Anh",
-        lastName: "Nguyen",
-        nativeLanguage: "Vietnamese",
-        englishLevel: "low",
-        ageRange: "25-30",
-        location: "North Cambridge, Cambridge, MA",
-        introduction: "I am very motivated!",
-      },
-      {
-        email: "user5@email.com",
-        cryptedPassword: "3wenjnvioznkz",
-        username: "username5",
-        firstName: "Lila",
-        lastName: "Tamang",
-        nativeLanguage: "Nepalese",
-        englishLevel: "intermediate",
-        ageRange: "45-50",
-        location: "Belmont, MA",
-        introduction: "Hi. I moved to Massachusetts 1 year ago",
-      },
-      {
-        email: "user6@email.com",
-        cryptedPassword: "ansandwsvsewdv",
-        username: "username6",
-        firstName: "Artem",
-        lastName: "Melnyk",
-        nativeLanguage: "Ukrainian",
-        englishLevel: "high",
-        ageRange: "50-55",
-        location: "Winthrop, MA",
-        introduction: "Nice to meet you!",
-      },
-    ];
+    const fakeUserData = [];
 
-    for (const singleUser of userData) {
-      const currentUser = await User.query().findOne({
-        email: singleUser.email,
-      });
-      if (!currentUser) {
-        await User.query().insert(singleUser);
-      }
+    for (let i = 0; i < ; i++) {
+      const firstName = i % 2 ? faker.person.firstName("male") : faker.person.firstName("female");
+      const nativeLanguage = i % 3 === 0 ? "Spanish" : i % 3 === 1 ? "French" : "Arabic";
+      const englishLevel = i % 3 === 0 ? "low" : i % 3 === 1 ? "intermediate" : "high";
+      const city = faker.location.city();
+
+      const startingAge = faker.date.birthdate({ min: 18, max: 100, mode: "age" });
+      const ageRange = startingAge + "-" + (startingAge + 5);
+
+      const lastName = faker.person.lastName();
+      const userName = firstName + lastName + faker.string.alpha("number");
+
+      const user = {
+        email: faker.internet.email(),
+        cryptedPassword: faker.internet.password({ length: 8 }),
+        username: userName,
+        firstName: lastName,
+        lastName: lastName,
+        nativeLanguage: nativeLanguage,
+        englishLevel: englishLevel,
+        ageRange: ageRange,
+        location: city,
+      };
+      fakeUserData.push(user);
     }
+
+    await User.query().insert(fakeUserData);
+
+    // for (const singleUser of fakeUserData) {
+    //   const currentUser = await User.query().findOne({
+    //     email: singleUser.email,
+    //   });
+    //   if (!currentUser) {
+    //     await User.query().insert(singleUser);
+    //   }
+    // }
   }
 }
 

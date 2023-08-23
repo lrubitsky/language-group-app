@@ -10,7 +10,7 @@ const UserProfileTile = (props) => {
     ageRange,
     location,
     introduction,
-  } = props.profile;
+  } = props.user;
   return (
     <div className="info-block">
       <p>

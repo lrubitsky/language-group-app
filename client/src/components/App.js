@@ -12,6 +12,7 @@ import LanguageGroupShow from "./LanguageGroupShow";
 import LandingPage from "./LandingPage";
 import UserOwnProfileShow from "./UserOwnProfileShow";
 import UserProfileShow from "./UserProfileShow";
+import AuthenticatedRoute from "./authentication/AuthenticatedRoute";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -27,17 +28,31 @@ const App = (props) => {
   useEffect(() => {
     fetchCurrentUser();
   }, []);
-
   return (
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/" render={(props) => <LandingPage {...props} user={currentUser} />} />
+
         <Route exact path="/users/new" component={RegistrationForm} />
+
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <Route exact path="/language-groups" component={LanguageGroupsList} />
-        <Route exact path="/language-groups/:id" component={LanguageGroupShow} />
-        <Route exact path="/profile" component={UserOwnProfileShow} />
+        {/* <Route exact path="/language-groups/:id" component={LanguageGroupShow} user={currentUser} /> */}
+
+        <AuthenticatedRoute
+          exact
+          path="/language-groups/:id"
+          component={LanguageGroupShow}
+          user={currentUser}
+        />
+
+        <AuthenticatedRoute
+          exact={true}
+          path="/users/my-profile"
+          component={UserOwnProfileShow}
+          user={currentUser}
+        />
         <Route exact path="/users/:id" component={UserProfileShow} />
       </Switch>
     </Router>

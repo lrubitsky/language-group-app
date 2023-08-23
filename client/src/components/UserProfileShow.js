@@ -3,8 +3,6 @@ import UserProfileTile from "./UserProfileTile";
 
 const UserProfileShow = (props) => {
   const [profile, setProfile] = useState({
-    email: "",
-    password: "",
     username: "",
     firstName: "",
     lastName: "",
@@ -15,6 +13,7 @@ const UserProfileShow = (props) => {
     introduction: "",
     id: "",
   });
+
   const userId = props.match.params.id;
 
   const getProfile = async () => {
@@ -35,13 +34,12 @@ const UserProfileShow = (props) => {
   useEffect(() => {
     getProfile();
   }, []);
-  console.log("PROFILE ID: ", profile.id);
   return (
     <div>
       <p>
         {profile.firstName} {profile.lastName}
       </p>
-      <UserProfileTile key={profile.id} profile={profile} />
+      <UserProfileTile user={profile} />
     </div>
   );
 };

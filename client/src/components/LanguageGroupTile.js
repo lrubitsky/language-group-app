@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 const LanguageGroupsTile = (props) => {
   const { topic, location, englishLevel, minMembers, maxMembers, id, creator } =
     props.languageGroup;
-  console.log(creator);
-  console.log("TOPIC IS ", topic);
 
   return (
     <div className="languageGroupTile">

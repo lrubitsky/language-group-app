@@ -53,6 +53,18 @@ class User extends uniqueFunc(Model) {
           to: "languageGroups.creatorId",
         },
       },
+      languageGroupsJoined: {
+        relation: Model.ManyToManyRelation,
+        modelClass: LanguageGroup,
+        join: {
+          from: "users.id",
+          through: {
+            from: "participations.usersId",
+            to: "participations.languageGroupId",
+          },
+          to: "languageGroups.id",
+        },
+      },
     };
   }
 

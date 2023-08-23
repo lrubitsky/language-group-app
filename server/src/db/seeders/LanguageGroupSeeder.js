@@ -2,10 +2,10 @@ import { LanguageGroup, User } from "../../models/index.js";
 
 class LanguageGroupSeeder {
   static async seed() {
-    const estela = await User.query().findOne("email", "user1@email.com");
-    const ahmed = await User.query().findOne("email", "user2@email.com");
-    const marie = await User.query().findOne("email", "user3@email.com");
-    const artem = await User.query().findOne("email", "user6@email.com");
+    const lowUser = await User.query().findOne("englishLevel", "low");
+    const intermediateUser = await User.query().findOne("englishLevel", "intermediate");
+    const highUser1 = await User.query().findOne("englishLevel", "high");
+    const highUser2 = await User.query().findOne("englishLevel", "high").offset(1);
 
     const languageGroupData = [
       {
@@ -15,7 +15,7 @@ class LanguageGroupSeeder {
         minMembers: 3,
         maxMembers: 5,
         placeCategory: "cafe",
-        creatorId: estela.id,
+        creatorId: lowUser.id,
       },
       {
         topic: "Careers",
@@ -24,7 +24,7 @@ class LanguageGroupSeeder {
         minMembers: 2,
         maxMembers: 6,
         placeCategory: "library",
-        creatorId: estela.id,
+        creatorId: lowUser.id,
       },
       {
         topic: "Travel",
@@ -33,7 +33,7 @@ class LanguageGroupSeeder {
         minMembers: 4,
         maxMembers: 5,
         placeCategory: "park",
-        creatorId: ahmed.id,
+        creatorId: intermediateUser.id,
       },
       {
         topic: "Relationships",
@@ -42,15 +42,15 @@ class LanguageGroupSeeder {
         minMembers: 2,
         maxMembers: 5,
         placeCategory: "mall",
-        creatorId: ahmed.id,
+        creatorId: intermediateUser.id,
       },
       {
         topic: "Community",
         location: "Winter Hill, Somerville, MA",
-        englishLevel: "intermediate.high",
+        englishLevel: "intermediate-high",
         minMembers: 4,
         maxMembers: 6,
-        creatorId: ahmed.id,
+        creatorId: intermediateUser.id,
       },
       {
         topic: "Sports",
@@ -58,7 +58,7 @@ class LanguageGroupSeeder {
         englishLevel: "all",
         minMembers: 3,
         maxMembers: 4,
-        creatorId: marie.id,
+        creatorId: highUser1.id,
       },
       {
         topic: "Technology",
@@ -66,7 +66,7 @@ class LanguageGroupSeeder {
         englishLevel: "intermediate-high",
         minMembers: 2,
         maxMembers: 5,
-        creatorId: marie.id,
+        creatorId: highUser1.id,
       },
       {
         topic: "Fashion",
@@ -74,7 +74,7 @@ class LanguageGroupSeeder {
         englishLevel: "high",
         minMembers: 2,
         maxMembers: 5,
-        creatorId: marie.id,
+        creatorId: highUser1.id,
       },
       {
         topic: "Politics",
@@ -82,7 +82,7 @@ class LanguageGroupSeeder {
         englishLevel: "all",
         minMembers: 3,
         maxMembers: 5,
-        creatorId: artem.id,
+        creatorId: highUser2.id,
       },
       {
         topic: "Pets",
@@ -90,7 +90,7 @@ class LanguageGroupSeeder {
         englishLevel: "intermediate-high",
         minMembers: 4,
         maxMembers: 6,
-        creatorId: artem.id,
+        creatorId: highUser2.id,
       },
       {
         topic: "Politics",
@@ -98,7 +98,7 @@ class LanguageGroupSeeder {
         englishLevel: "high",
         minMembers: 2,
         maxMembers: 4,
-        creatorId: artem.id,
+        creatorId: highUser2.id,
       },
       {
         topic: "Food",
@@ -106,7 +106,7 @@ class LanguageGroupSeeder {
         englishLevel: "high",
         minMembers: 2,
         maxMembers: 5,
-        creatorId: artem.id,
+        creatorId: highUser2.id,
       },
       {
         topic: "Movies",
@@ -114,7 +114,7 @@ class LanguageGroupSeeder {
         englishLevel: "high",
         minMembers: 3,
         maxMembers: 6,
-        creatorId: artem.id,
+        creatorId: highUser2.id,
       },
     ];
 

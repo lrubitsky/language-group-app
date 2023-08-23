@@ -9,6 +9,7 @@ class UserSerializer {
       "ageRange",
       "location",
       "introduction",
+      "id",
     ];
     const serializedUsers = array.map((user) => {
       let serializedUser = {};
@@ -34,6 +35,7 @@ class UserSerializer {
       "ageRange",
       "location",
       "introduction",
+      "id",
     ];
 
     const serializedUser = {};

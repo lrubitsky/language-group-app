@@ -28,6 +28,7 @@ class LanguageGroupSerializer {
 
     return serializedLanguageGroup;
   }
+
   static async getInfo(languageGroup) {
     const requiredAttributes = [
       "topic",
@@ -46,6 +47,9 @@ class LanguageGroupSerializer {
     }
     const user = await languageGroup.$relatedQuery("creator");
     const serializedUser = UserSerializer.getProfileOfOne(user);
+
+    // const participants = languageGroup.$relatedQuery("participants");
+
     serializedLanguageGroup.creator = serializedUser;
     return serializedLanguageGroup;
   }

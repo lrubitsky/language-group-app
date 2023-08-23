@@ -8,11 +8,11 @@ class Seeder {
     console.log("user group seeding in progress");
     await UserSeeder.seed();
 
-    console.log("language group seeding in progress");
-    await LanguageGroupSeeder.seed();
+    // console.log("language group seeding in progress");
+    // await LanguageGroupSeeder.seed();
 
-    console.log("Done!");
-    await connection.destroy();
+    // console.log("Done!");
+    // await connection.destroy();
   }
 }
 

@@ -30,6 +30,18 @@ class LanguageGroup extends Model {
           from: "languageGroups.creatorId",
           to: "users.id",
         },
+        participants: {
+          relation: Model.ManyToManyRelation,
+          modelClass: LanguageGroup,
+          join: {
+            from: "languageGroups.id",
+            through: {
+              from: "participations.languageGroupId",
+              to: "participations.userId",
+            },
+            to: "users.languageGroupId",
+          },
+        },
       },
     };
   }
