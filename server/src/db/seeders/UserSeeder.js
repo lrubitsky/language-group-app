@@ -1,90 +1,92 @@
 import { User } from "../../models/index.js";
+import { faker } from "@faker-js/faker";
+import md5 from "blueimp-md5";
 
 class UserSeeder {
   static async seed() {
-    const userData = [
-      {
-        email: "user1@email.com",
-        cryptedPassword: "q3tvgbtrstshdhsh",
-        username: "username1",
-        firstName: "Estela",
-        lastName: "Sanchez",
-        nativeLanguage: "Spanish",
-        englishLevel: "low",
-        ageRange: "30-35",
-        location: "East Boston, Boston, MA",
-        introduction: "Hello!",
-      },
-      {
-        email: "user2@email.com",
-        cryptedPassword: "rhehdndzgdgzsg",
-        username: "username2",
-        firstName: "Ahmed",
-        lastName: "Halaby",
-        nativeLanguage: "Arabic",
-        englishLevel: "intermediate",
-        ageRange: "18-24",
-        location: "Revere, MA",
-        introduction: "I am happy to chat with you!",
-      },
-      {
-        email: "user3@email.com",
-        cryptedPassword: "zgasevzbfzbdvdf",
-        username: "username3",
-        firstName: "Marie",
-        lastName: "Santana",
-        nativeLanguage: "Haitian Creole",
-        englishLevel: "high",
-        ageRange: "45-50",
-        location: "Somerville, MA",
-        introduction: "I love English!",
-      },
-      {
-        email: "user4@email.com",
-        cryptedPassword: "knvndfnkzsndkc",
-        username: "username4",
-        firstName: "Anh",
-        lastName: "Nguyen",
-        nativeLanguage: "Vietnamese",
-        englishLevel: "low",
-        ageRange: "25-30",
-        location: "North Cambridge, Cambridge, MA",
-        introduction: "I am very motivated!",
-      },
-      {
-        email: "user5@email.com",
-        cryptedPassword: "3wenjnvioznkz",
-        username: "username5",
-        firstName: "Lila",
-        lastName: "Tamang",
-        nativeLanguage: "Nepalese",
-        englishLevel: "intermediate",
-        ageRange: "45-50",
-        location: "Belmont, MA",
-        introduction: "Hi. I moved to Massachusetts 1 year ago",
-      },
-      {
-        email: "user6@email.com",
-        cryptedPassword: "ansandwsvsewdv",
-        username: "username6",
-        firstName: "Artem",
-        lastName: "Melnyk",
-        nativeLanguage: "Ukrainian",
-        englishLevel: "high",
-        ageRange: "50-55",
-        location: "Winthrop, MA",
-        introduction: "Nice to meet you!",
-      },
-    ];
+    const fakeUserData = [];
+    for (let i = 0; i < 100; i++) {
+      const firstName = faker.person.firstName();
+      const lastName = faker.person.lastName();
+      const userName = firstName + lastName + faker.number.int(100);
+      const email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@example.com`;
+      const hash = md5(email);
+      const imageUrl = `https://www.gravatar.com/avatar/${hash}?d=robohash`;
+      const languages = [
+        "Spanish",
+        "Portuguese",
+        "Arabic",
+        "Haitian Creole",
+        "Chinese",
+        "Vietnamese",
+        "Ukrainian",
+        "Amharic",
+      ];
+      const randomLanguageIndex = Math.floor(Math.random() * languages.length);
+      const nativeLanguage = languages[randomLanguageIndex];
 
-    for (const singleUser of userData) {
-      const currentUser = await User.query().findOne({
-        email: singleUser.email,
-      });
-      if (!currentUser) {
-        await User.query().insert(singleUser);
-      }
+      const englishLevel = i % 3 === 0 ? "low" : i % 3 === 1 ? "intermediate" : "high";
+      const cities = [
+        "Quincy, MA",
+        "Boston, MA",
+        "Cambridge, MA",
+        "Lynn, MA",
+        "Saugus, MA",
+        "Revere, MA",
+        "Chelsea, MA",
+        "Winthrop, MA",
+        "Malden, MA",
+        "Belmont, MA",
+        "Newton, MA",
+        "Brookline, MA",
+        "Everett, MA",
+        "Nashua, NH",
+      ];
+      const randomCityIndex = Math.floor(Math.random() * cities.length);
+      const city = cities[randomCityIndex];
+
+      const introductions = [
+        "Hi there! I'm excited to connect and improve my English with you.",
+        "Hello, I'm here to practice English conversations and meet new friends.",
+        "Hey, I'm looking forward to chatting with you and getting better at English.",
+        "Hi, I'm eager to enhance my English skills through meaningful conversations.",
+        "Hello! Let's have interesting discussions and enhance our English together.",
+        "Hey, I'm here to learn and grow by conversing in English with you.",
+        "Hi, I'm open to chatting about various topics to improve my English fluency.",
+        "Hello, I'm seeking friendly conversations to boost my English proficiency.",
+        "Hey there! Let's exchange thoughts and language skills in English.",
+        "Hi, I'm ready to engage in English conversations for mutual learning and fun.",
+      ];
+      const randomIntroductionIndex = Math.floor(Math.random() * introductions.length);
+      const introduction = introductions[randomIntroductionIndex];
+
+      const startingAge = faker.number.int({ min: 18, max: 90 });
+      const ageRange = `${startingAge}-${startingAge + 5}`;
+
+      const user = {
+        email: email,
+        cryptedPassword: faker.internet.password({ length: 8 }),
+        username: userName,
+        firstName: firstName,
+        lastName: lastName,
+        nativeLanguage: nativeLanguage,
+        englishLevel: englishLevel,
+        ageRange: ageRange,
+        location: city,
+        introduction: introduction,
+        imageUrl: imageUrl,
+      };
+      fakeUserData.push(user);
     }
+    await User.query().insert(fakeUserData);
+    // for (const singleUser of fakeUserData) {
+    //   const currentUser = await User.query().findOne({
+    //     email: singleUser.email,
+    //   });
+    //   if (!currentUser) {
+    //     await User.query().insert(singleUser);
+    //   }
+    // }
   }
 }
 

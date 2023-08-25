@@ -19,10 +19,13 @@ const TopBar = ({ user }) => {
 
   const authenticatedListItems = [
     <li>
+      <Link to="/">Home</Link>
+    </li>,
+    <li>
       <Link to="/language-groups">Find Groups</Link>
     </li>,
     <li>
-      <Link to="/profile">Your Profile</Link>
+      <Link to="/users/my-profile">Your Profile</Link>
     </li>,
     <li key="sign-out">
       <SignOutButton />

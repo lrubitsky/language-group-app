@@ -8,10 +8,11 @@ const clientRoutes = [
   "/user-sessions/new",
   "/users/new",
   "/users/:id",
+  "/users/my-profile",
   "/language-groups",
   "/language-groups/:id",
 ];
-const authedClientRoutes = ["/profile"];
+const authedClientRoutes = ["users/profile"];
 
 router.get(authedClientRoutes, (req, res) => {
   if (req.user) {

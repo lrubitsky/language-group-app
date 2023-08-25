@@ -2,6 +2,7 @@
 import { connection } from "../boot.js";
 import LanguageGroupSeeder from "./seeders/LanguageGroupSeeder.js";
 import UserSeeder from "./seeders/UserSeeder.js";
+import ParticipationSeeder from "./seeders/ParticipationSeeder.js";
 
 class Seeder {
   static async seed() {
@@ -10,6 +11,9 @@ class Seeder {
 
     console.log("language group seeding in progress");
     await LanguageGroupSeeder.seed();
+
+    console.log("participation seeding in progress");
+    await ParticipationSeeder.seed();
 
     console.log("Done!");
     await connection.destroy();

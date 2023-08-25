@@ -1,43 +1,41 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
 
 import ErrorList from "./layout/ErrorList";
 import translateServerErrors from "../services/translateServerErrors";
 
 const UserProfileForm = (props) => {
-  const [profileRecord, setProfileRecord] = useState({
-    nativeLanguage: "",
-    englishLevel: "",
-    ageRange: "",
-    location: "",
-    introduction: "",
-  });
-  const [errors, setErrors] = useState([]);
-  const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [profileUpdate, setProfileUpdate] = useState({});
 
-  const addProfile = async () => {
+  const [errors, setErrors] = useState([]);
+
+  const currentUserId = props.user.id;
+
+  const updateProfile = async () => {
     try {
-      const response = await fetch("api/v1/users", {
-        method: "POST",
+      const response = await fetch(`/api/v1/users/${currentUserId}`, {
+        method: "PATCH",
         headers: new Headers({
           "Content-Type": "application/json",
         }),
-        body: JSON.stringify(profileRecord),
+        body: JSON.stringify(profileUpdate),
       });
+      console.log("RESPONSE BODY, ", response.body);
+
       if (!response.ok) {
         if (response.status === 422) {
           const body = await response.json();
+          console.log("Validation Errors:", body);
           const newErrors = translateServerErrors(body.errors);
           return setErrors(newErrors);
         } else {
-          const errorMessage = `${response.status}(response.statusText)`;
+          const errorMessage = `${response.status}(${response.statusText})`;
           const error = new Error(errorMessage);
           throw error;
         }
       } else {
         const body = await response.json();
-        console.log("The post was successful", body);
-        setShouldRedirect(true);
+        console.log("The patch was successful", body);
+        window.location.reload();
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
@@ -46,76 +44,139 @@ const UserProfileForm = (props) => {
 
   const handleChange = (event) => {
     const targetInput = event.currentTarget;
+    const name = targetInput.name;
+    const value = targetInput.value;
 
-    setProfileRecord({
-      ...profileRecord,
-      [event.currentTarget.name]: targetInput.value,
-    });
+    setProfileUpdate((prevProfileUpdate) => ({
+      ...prevProfileUpdate,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addProfile();
+    updateProfile();
+    window.location.reload(true);
+    window.scrollTo(0, 0);
   };
 
-  if (shouldRedirect) {
-    return <Redirect push to="/language-groups" />;
-  }
+  const englishLevels = ["", "low", "intermediate", "high"];
+  const levelOptions = englishLevels.map((level) => {
+    return (
+      <option key={level} value={level}>
+        {level}
+      </option>
+    );
+  });
+
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Update Your Profile</h2>
+    <form className="profile-form" onSubmit={handleSubmit}>
+      <h2 className="form-title">Update Your Profile</h2>
       <ErrorList errors={errors} />
-      <label htmlFor="nativeLanguage">
-        Native Language
-        <input
-          id="nativeLanguage"
-          type="text"
-          name="nativeLanguage"
-          onChange={handleChange}
-          value={profileRecord.nativeLanguage}
-        />
-      </label>
-      <label htmlFor="nativeLanguage">
-        English Level
-        <input
-          id="englishLevel"
-          type="text"
-          name="englishLevel"
-          onChange={handleChange}
-          value={profileRecord.englishLevel}
-        />
-      </label>
-      <label htmlFor="ageRange">
-        Age
-        <input
-          id="ageRange"
-          type="text"
-          name="ageRange"
-          onChange={handleChange}
-          value={profileRecord.ageRange}
-        />
-      </label>
-      <label htmlFor="location">
-        Location
-        <input
-          id="location"
-          type="text"
-          name="location"
-          onChange={handleChange}
-          value={profileRecord.location}
-        />
-      </label>
-      <label htmlFor="introduction">
-        introduction
-        <input
-          id="introduction"
-          type="text"
-          name="introduction"
-          onChange={handleChange}
-          value={profileRecord.introduction}
-        />
-      </label>
-      <input type="submit" value="Set Profile" />
+      <div className="grid-container">
+        <div className="grid-x grid-margin-x">
+          <div className="cell medium-6">
+            <label htmlFor="firstName">
+              First Name
+              <input
+                id="firstName"
+                type="text"
+                name="firstName"
+                onChange={handleChange}
+                value={profileUpdate.firstName}
+              />
+            </label>
+          </div>
+          <div className="cell medium-6">
+            <label htmlFor="nativeLanguage">
+              Native Language
+              <input
+                id="nativeLanguage"
+                type="text"
+                name="nativeLanguage"
+                onChange={handleChange}
+                value={profileUpdate.nativeLanguage}
+              />
+            </label>
+          </div>
+          <div className="cell medium-6">
+            <label htmlFor="lastName">
+              Last Name
+              <input
+                id="lastName"
+                type="text"
+                name="lastName"
+                onChange={handleChange}
+                value={profileUpdate.lastName}
+              />
+            </label>
+          </div>
+          <div className="cell medium-6">
+            <label htmlFor="englishLevel">
+              English Level
+              <select
+                id="englishLevel"
+                name="englishLevel"
+                onChange={handleChange}
+                value={profileUpdate.englishLevel}
+              >
+                {levelOptions}
+              </select>
+            </label>
+          </div>
+          <div className="cell medium-6">
+            <label htmlFor="email">
+              Email
+              <input
+                id="email"
+                type="text"
+                name="email"
+                onChange={handleChange}
+                value={profileUpdate.email}
+              />
+            </label>
+          </div>
+          <div className="cell medium-6">
+            <label htmlFor="location">
+              Location
+              <input
+                id="location"
+                type="text"
+                name="location"
+                onChange={handleChange}
+                value={profileUpdate.location}
+              />
+            </label>
+          </div>
+          <div className="cell medium-6">
+            <label htmlFor="ageRange">
+              Age
+              <input
+                id="ageRange"
+                type="text"
+                name="ageRange"
+                onChange={handleChange}
+                value={profileUpdate.ageRange}
+              />
+            </label>
+          </div>
+          <div className="cell medium-6">
+            <label htmlFor="introduction">
+              Introduction
+              <textarea
+                id="introduction"
+                name="introduction"
+                onChange={handleChange}
+                value={profileUpdate.introduction}
+                className="profile-textarea"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+      <button type="submit" className="button primary">
+        Save Profile
+      </button>
     </form>
   );
   // fill out a form

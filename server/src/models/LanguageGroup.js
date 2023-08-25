@@ -8,8 +8,17 @@ class LanguageGroup extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["topic", "location", "englishLevel", "minMembers", "maxMembers", "creatorId"],
+      required: [
+        "title",
+        "topic",
+        "location",
+        "englishLevel",
+        "minMembers",
+        "maxMembers",
+        "creatorId",
+      ],
       properties: {
+        title: { type: "string" },
         topic: { type: "string" },
         location: { type: "string" },
         englishLevel: { type: "string" },
@@ -28,6 +37,18 @@ class LanguageGroup extends Model {
         modelClass: User,
         join: {
           from: "languageGroups.creatorId",
+          to: "users.id",
+        },
+      },
+      participants: {
+        relation: Model.ManyToManyRelation,
+        modelClass: User,
+        join: {
+          from: "languageGroups.id",
+          through: {
+            from: "participations.languageGroupId",
+            to: "participations.participantId",
+          },
           to: "users.id",
         },
       },
