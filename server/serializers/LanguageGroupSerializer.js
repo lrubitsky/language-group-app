@@ -4,6 +4,7 @@ import UserSerializer from "./UserSerializer.js";
 class LanguageGroupSerializer {
   static async getSummary(languageGroups) {
     const requiredAttributes = [
+      "title",
       "topic",
       "location",
       "englishLevel",
@@ -11,6 +12,7 @@ class LanguageGroupSerializer {
       "maxMembers",
       "creatorId",
       "id",
+      "imageUrl",
     ];
 
     const serializedLanguageGroup = await Promise.all(
@@ -31,6 +33,7 @@ class LanguageGroupSerializer {
 
   static async getInfo(languageGroup) {
     const requiredAttributes = [
+      "title",
       "topic",
       "location",
       "englishLevel",
@@ -39,6 +42,7 @@ class LanguageGroupSerializer {
       "creatorId",
       "id",
       "placeCategory",
+      "imageUrl",
     ];
 
     const serializedLanguageGroup = {};
@@ -48,7 +52,7 @@ class LanguageGroupSerializer {
     const user = await languageGroup.$relatedQuery("creator");
     const serializedUser = UserSerializer.getProfileOfOne(user);
 
-    // const participants = languageGroup.$relatedQuery("participants");
+    serializedLanguageGroup.participants = await languageGroup.$relatedQuery("participants");
 
     serializedLanguageGroup.creator = serializedUser;
     return serializedLanguageGroup;

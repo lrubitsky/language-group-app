@@ -1,23 +1,24 @@
 import React from "react";
-import { faker } from "@faker-js/faker";
 
 const LandingPage = (props) => {
-  const fakeText = faker.internet.firstName("male");
   const welcomeMessage = () => {
     if (props.user) {
       return (
-        <>
-          <p>{fakeText}</p>
+        <div>
           <h1>Hello, {props.user.firstName}! </h1>
-          <img href={faker.internet.avatar()} />
-        </>
+          <h2>
+            <strong>Join a new Language Group today!</strong>
+          </h2>
+          <div className="centered">
+            <img src="https://freepngimg.com/save/97452-chatting-png-download-free/512x512" />
+          </div>
+        </div>
       );
     } else {
       return (
         <div>
           <h1>Welcome to Language Meet!</h1>
-          {/* <img href={faker.internet.avatar()} /> */}
-          <p>{fakeText}</p>
+          <img src="https://freepngimg.com/save/97452-chatting-png-download-free/512x512" />
         </div>
       );
     }

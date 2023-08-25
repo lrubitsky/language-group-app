@@ -36,9 +36,7 @@ const UserProfileShow = (props) => {
   }, []);
   return (
     <div>
-      <p>
-        {profile.firstName} {profile.lastName}
-      </p>
+      <h1>About This User:</h1>
       <UserProfileTile user={profile} />
     </div>
   );

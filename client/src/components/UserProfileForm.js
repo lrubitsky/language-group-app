@@ -4,19 +4,11 @@ import ErrorList from "./layout/ErrorList";
 import translateServerErrors from "../services/translateServerErrors";
 
 const UserProfileForm = (props) => {
-  const [profileUpdate, setProfileUpdate] = useState({
-    nativeLanguage: "",
-    englishLevel: "",
-    ageRange: "",
-    location: "",
-    introduction: "",
-  });
+  const [profileUpdate, setProfileUpdate] = useState({});
 
   const [errors, setErrors] = useState([]);
 
   const currentUserId = props.user.id;
-  // console.log("NL: ", profileUpdate.nativeLanguage);
-  // console.log("NATIVE LANGUAGE: ", props.user.nativeLanguage);
 
   const updateProfile = async () => {
     try {
@@ -64,93 +56,127 @@ const UserProfileForm = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     updateProfile();
+    window.location.reload(true);
+    window.scrollTo(0, 0);
   };
 
+  const englishLevels = ["", "low", "intermediate", "high"];
+  const levelOptions = englishLevels.map((level) => {
+    return (
+      <option key={level} value={level}>
+        {level}
+      </option>
+    );
+  });
+
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Update Your Profile</h2>
+    <form className="profile-form" onSubmit={handleSubmit}>
+      <h2 className="form-title">Update Your Profile</h2>
       <ErrorList errors={errors} />
-      <label htmlFor="firstName">
-        First Name
-        <input
-          id="firstName"
-          type="text"
-          name="firstName"
-          onChange={handleChange}
-          value={profileUpdate.firstName}
-        />
-      </label>
-      <label htmlFor="lastName">
-        Last Name
-        <input
-          id="lastName"
-          type="text"
-          name="lastName"
-          onChange={handleChange}
-          value={profileUpdate.lastName}
-        />
-      </label>
-      <label htmlFor="email">
-        Email
-        <input
-          id="email"
-          type="text"
-          name="email"
-          onChange={handleChange}
-          value={profileUpdate.email}
-        />
-      </label>
-      <label htmlFor="nativeLanguage">
-        Native Language
-        <input
-          id="nativeLanguage"
-          type="text"
-          name="nativeLanguage"
-          onChange={handleChange}
-          value={profileUpdate.nativeLanguage}
-        />
-      </label>
-      <label htmlFor="englishLevel">
-        English Level
-        <input
-          id="englishLevel"
-          type="text"
-          name="englishLevel"
-          onChange={handleChange}
-          value={profileUpdate.englishLevel}
-        />
-      </label>
-      <label htmlFor="ageRange">
-        Age
-        <input
-          id="ageRange"
-          type="text"
-          name="ageRange"
-          onChange={handleChange}
-          value={profileUpdate.ageRange}
-        />
-      </label>
-      <label htmlFor="location">
-        Location
-        <input
-          id="location"
-          type="text"
-          name="location"
-          onChange={handleChange}
-          value={profileUpdate.location}
-        />
-      </label>
-      <label htmlFor="introduction">
-        Introduction
-        <input
-          id="introduction"
-          type="text"
-          name="introduction"
-          onChange={handleChange}
-          value={profileUpdate.introduction}
-        />
-      </label>
-      <input type="submit" value="Set Profile" />
+      <div className="grid-container">
+        <div className="grid-x grid-margin-x">
+          <div className="cell medium-6">
+            <label htmlFor="firstName">
+              First Name
+              <input
+                id="firstName"
+                type="text"
+                name="firstName"
+                onChange={handleChange}
+                value={profileUpdate.firstName}
+              />
+            </label>
+          </div>
+          <div className="cell medium-6">
+            <label htmlFor="nativeLanguage">
+              Native Language
+              <input
+                id="nativeLanguage"
+                type="text"
+                name="nativeLanguage"
+                onChange={handleChange}
+                value={profileUpdate.nativeLanguage}
+              />
+            </label>
+          </div>
+          <div className="cell medium-6">
+            <label htmlFor="lastName">
+              Last Name
+              <input
+                id="lastName"
+                type="text"
+                name="lastName"
+                onChange={handleChange}
+                value={profileUpdate.lastName}
+              />
+            </label>
+          </div>
+          <div className="cell medium-6">
+            <label htmlFor="englishLevel">
+              English Level
+              <select
+                id="englishLevel"
+                name="englishLevel"
+                onChange={handleChange}
+                value={profileUpdate.englishLevel}
+              >
+                {levelOptions}
+              </select>
+            </label>
+          </div>
+          <div className="cell medium-6">
+            <label htmlFor="email">
+              Email
+              <input
+                id="email"
+                type="text"
+                name="email"
+                onChange={handleChange}
+                value={profileUpdate.email}
+              />
+            </label>
+          </div>
+          <div className="cell medium-6">
+            <label htmlFor="location">
+              Location
+              <input
+                id="location"
+                type="text"
+                name="location"
+                onChange={handleChange}
+                value={profileUpdate.location}
+              />
+            </label>
+          </div>
+          <div className="cell medium-6">
+            <label htmlFor="ageRange">
+              Age
+              <input
+                id="ageRange"
+                type="text"
+                name="ageRange"
+                onChange={handleChange}
+                value={profileUpdate.ageRange}
+              />
+            </label>
+          </div>
+          <div className="cell medium-6">
+            <label htmlFor="introduction">
+              Introduction
+              <textarea
+                id="introduction"
+                name="introduction"
+                onChange={handleChange}
+                value={profileUpdate.introduction}
+                className="profile-textarea"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+      <button type="submit" className="button primary">
+        Save Profile
+      </button>
     </form>
   );
   // fill out a form

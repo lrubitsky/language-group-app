@@ -30,31 +30,32 @@ const App = (props) => {
   }, []);
   return (
     <Router>
-      <TopBar user={currentUser} />
-      <Switch>
-        <Route exact path="/" render={(props) => <LandingPage {...props} user={currentUser} />} />
+      <div className="main">
+        <TopBar user={currentUser} />
+        <Switch>
+          <Route exact path="/" render={(props) => <LandingPage {...props} user={currentUser} />} />
 
-        <Route exact path="/users/new" component={RegistrationForm} />
+          <Route exact path="/users/new" component={RegistrationForm} />
 
-        <Route exact path="/user-sessions/new" component={SignInForm} />
-        <Route exact path="/language-groups" component={LanguageGroupsList} />
-        {/* <Route exact path="/language-groups/:id" component={LanguageGroupShow} user={currentUser} /> */}
+          <Route exact path="/user-sessions/new" component={SignInForm} />
+          <Route exact path="/language-groups" component={LanguageGroupsList} />
 
-        <AuthenticatedRoute
-          exact
-          path="/language-groups/:id"
-          component={LanguageGroupShow}
-          user={currentUser}
-        />
+          <AuthenticatedRoute
+            exact
+            path="/language-groups/:id"
+            component={LanguageGroupShow}
+            user={currentUser}
+          />
 
-        <AuthenticatedRoute
-          exact={true}
-          path="/users/my-profile"
-          component={UserOwnProfileShow}
-          user={currentUser}
-        />
-        <Route exact path="/users/:id" component={UserProfileShow} />
-      </Switch>
+          <AuthenticatedRoute
+            exact={true}
+            path="/users/my-profile"
+            component={UserOwnProfileShow}
+            user={currentUser}
+          />
+          <Route exact path="/users/:id" component={UserProfileShow} />
+        </Switch>
+      </div>
     </Router>
   );
 };

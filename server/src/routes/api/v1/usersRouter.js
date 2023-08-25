@@ -17,6 +17,7 @@ usersRouter.post("/", async (req, res) => {
     ageRange,
     location,
     introduction,
+    imageUrl,
   } = req.body;
   try {
     const persistedUser = await User.query().insertAndFetch({
@@ -30,6 +31,7 @@ usersRouter.post("/", async (req, res) => {
       ageRange,
       location,
       introduction,
+      imageUrl,
     });
     return req.login(persistedUser, () => {
       return res.status(201).json({ user: persistedUser });
@@ -47,6 +49,7 @@ usersRouter.get("/:id", async (req, res) => {
     const serializedUser = await UserSerializer.getProfileOfOne(userData);
     if (userData) {
       res.status(200).json({ profile: serializedUser });
+      console.log("IMG", serializedUser.imageUrl);
     } else {
       console.log(error);
       return res.status(404).json({ errors: error });
@@ -62,14 +65,10 @@ usersRouter.patch("/:id", async (req, res) => {
     const { id } = req.params;
     const updatedUser = await User.query().findById(id);
     await updatedUser.$query().patch(req.body);
-    console.log("UPDATED USER:", updatedUser);
     const serializedUser = await UserSerializer.getProfileOfOne(userData);
     return res.status(200).json({ user: serializedUser });
   } catch (error) {
     console.log(error);
-    console.log("ERROR: ", error);
-    console.log("Request params:", req.params);
-    console.log("Request body:", req.body);
     return res.status(422).json({ errors: error });
   }
 });

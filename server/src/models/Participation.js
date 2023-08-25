@@ -1,16 +1,16 @@
 const Model = require("./Model");
 
-class Participation {
+class Participation extends Model {
   static get tableName() {
-    return "userGroups";
+    return "participations";
   }
 
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["userId", "languageGroupId"],
+      required: ["participantId", "languageGroupId"],
       properties: {
-        userId: { type: ["integer", "string"] },
+        participantId: { type: ["integer", "string"] },
         languageGroupId: { type: ["integer", "string"] },
       },
     };
@@ -23,7 +23,7 @@ class Participation {
         relation: Model.BelongsToOneRelation,
         modelClass: User,
         join: {
-          from: "userGroupJoin.participantId",
+          from: "participations.participantId",
           to: "users.id",
         },
       },
@@ -31,7 +31,7 @@ class Participation {
         relation: Model.BelongsToOneRelation,
         modelClass: LanguageGroup,
         join: {
-          from: "userGroupJoin.languageGroupId",
+          from: "participations.languageGroupId",
           to: "languageGroups.id",
         },
       },

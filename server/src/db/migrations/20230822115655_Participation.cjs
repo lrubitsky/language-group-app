@@ -35,5 +35,6 @@ exports.up = async (knex) => {
  */
 exports.down = (knex) => {
   console.log(`Rolling back ${tableName}`);
+
   return knex.schema.dropTableIfExists(tableName);
 };

@@ -38,6 +38,7 @@ class User extends uniqueFunc(Model) {
         ageRange: { type: "string" },
         location: { type: "string" },
         introduction: { type: "string" },
+        imgUrl: { type: "string" },
       },
     };
   }
@@ -59,7 +60,7 @@ class User extends uniqueFunc(Model) {
         join: {
           from: "users.id",
           through: {
-            from: "participations.usersId",
+            from: "participations.participantId",
             to: "participations.languageGroupId",
           },
           to: "languageGroups.id",
