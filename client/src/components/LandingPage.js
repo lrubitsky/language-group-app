@@ -16,7 +16,7 @@ const LandingPage = (props) => {
       );
     } else {
       return (
-        <div>
+        <div className="centered">
           <h1>Welcome to Lingo Squads!</h1>
           <img src="https://freepngimg.com/save/97452-chatting-png-download-free/512x512" />
         </div>
