@@ -1,1 +1,1 @@
-# language-group-app
+# lingosquads

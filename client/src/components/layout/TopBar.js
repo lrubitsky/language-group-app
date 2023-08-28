@@ -36,7 +36,7 @@ const TopBar = ({ user }) => {
     <div className="top-bar">
       <div className="top-bar-left">
         <ul className="menu">
-          <li className="menu-text">LANGUAGE GROUPS</li>
+          <li className="menu-text">LINGO SQUADS</li>
         </ul>
       </div>
       <div className="top-bar-right">
