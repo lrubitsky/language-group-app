@@ -1,5 +1,5 @@
 import { User } from "../../models/index.js";
-import { faker } from "@faker-js/faker";
+import faker from "@faker-js/faker";
 import md5 from "blueimp-md5";
 
 class UserSeeder {
