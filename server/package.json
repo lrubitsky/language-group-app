@@ -20,7 +20,7 @@
   "private": true,
   "type": "module",
   "version": "0.0.1",
-  "name": "language-group-app-server",
+  "name": "lingosquads-server",
   "engines": {
     "node": "^16.18"
   },

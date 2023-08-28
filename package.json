@@ -7,14 +7,14 @@
     "e2e"
   ],
   "scripts": {
-    "build:client": "yarn workspace language-group-app-client build",
-    "dev": "yarn workspace language-group-app-server dev",
-    "dev:debug": "yarn workspace language-group-app-server dev:debug",
-    "heroku-postbuild": "yarn workspace language-group-app-client build",
-    "start": "yarn workspace language-group-app-server start",
-    "dev:cypress": "yarn workspace language-group-app-server dev:e2e",
-    "e2e:open": "yarn workspace language-group-app-e2e e2e:open",
-    "e2e:run": "yarn workspace language-group-app-e2e e2e:run"
+    "build:client": "yarn workspace lingosquads-client build",
+    "dev": "yarn workspace lingosquads-server dev",
+    "dev:debug": "yarn workspace lingosquads-server dev:debug",
+    "heroku-postbuild": "yarn workspace lingosquads-client build",
+    "start": "yarn workspace lingosquads-server start",
+    "dev:cypress": "yarn workspace lingosquads-server dev:e2e",
+    "e2e:open": "yarn workspace lingosquads-e2e e2e:open",
+    "e2e:run": "yarn workspace lingosquads-e2e e2e:run"
   },
   "engines": {
     "node": "^16.18"

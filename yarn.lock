@@ -6781,7 +6781,7 @@
     "tarn" "^3.0.2"
     "tildify" "2.0.0"
 
-"language-group-app-client@file:/Users/lillyrubitsky/Challenges/language-group-app/client":
+"lingosquads-client@file:/Users/lillyrubitsky/Challenges/lingosquads/client":
   "resolved" "file:client"
   "version" "0.0.1"
   dependencies:
@@ -6817,11 +6817,11 @@
     "webpack-cli" "^4.1.0"
     "webpack-hot-middleware" "^2.25.0"
 
-"language-group-app-e2e@file:/Users/lillyrubitsky/Challenges/language-group-app/e2e":
+"lingosquads-e2e@file:/Users/lillyrubitsky/Challenges/lingosquads/e2e":
   "resolved" "file:e2e"
   "version" "0.0.1"
 
-"language-group-app-server@file:/Users/lillyrubitsky/Challenges/language-group-app/server":
+"lingosquads-server@file:/Users/lillyrubitsky/Challenges/lingosquads/server":
   "resolved" "file:server"
   "version" "0.0.1"
   dependencies:

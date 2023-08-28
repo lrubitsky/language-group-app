@@ -7,7 +7,7 @@ const LandingPage = (props) => {
         <div>
           <h1>Hello, {props.user.firstName}! </h1>
           <h2>
-            <strong>Join a new Language Group today!</strong>
+            <strong>Join a new Lingo Squad today!</strong>
           </h2>
           <div className="centered">
             <img src="https://freepngimg.com/save/97452-chatting-png-download-free/512x512" />
@@ -17,7 +17,7 @@ const LandingPage = (props) => {
     } else {
       return (
         <div>
-          <h1>Welcome to Language Meet!</h1>
+          <h1>Welcome to Lingo Squads!</h1>
           <img src="https://freepngimg.com/save/97452-chatting-png-download-free/512x512" />
         </div>
       );
