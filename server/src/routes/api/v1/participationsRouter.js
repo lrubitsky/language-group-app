@@ -17,8 +17,13 @@ participationsRouter.get("/:languageGroupId", async (req, res) => {
   try {
     const { languageGroupId } = req.params;
     const participations = await Participation.query().where("languageGroupId", languageGroupId);
-    if (participations) {
-      return res.status(200).json({ participations: participations });
+    if (participations.length > 0) {
+      const serializedParticipation = await Promise.all(
+        participations.map(async (participations) => {
+          return await ParticipationSerializer.getParticipationInfo(participations);
+        })
+      );
+      return res.status(200).json({ participations: serializedParticipation });
     } else {
       console.log("No participations found.");
       console.log(error);

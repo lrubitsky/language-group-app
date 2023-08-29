@@ -7,8 +7,8 @@ const languageGroupsRouter = new express.Router();
 languageGroupsRouter.get("/", async (req, res) => {
   try {
     const languageGroupsData = await LanguageGroup.query();
-    const serializedLanguageGroup = await LanguageGroupSerializer.getSummary(languageGroupsData);
-    return res.status(200).json({ languageGroups: serializedLanguageGroup });
+    const serializedLanguageGroups = await LanguageGroupSerializer.getSummary(languageGroupsData);
+    return res.status(200).json({ languageGroups: serializedLanguageGroups });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ errors: error });

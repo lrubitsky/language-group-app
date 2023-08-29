@@ -79,14 +79,14 @@ class UserSeeder {
       fakeUserData.push(user);
     }
     await User.query().insert(fakeUserData);
-    // for (const singleUser of fakeUserData) {
-    //   const currentUser = await User.query().findOne({
-    //     email: singleUser.email,
-    //   });
-    //   if (!currentUser) {
-    //     await User.query().insert(singleUser);
-    //   }
-    // }
+    for (const singleUser of fakeUserData) {
+      const currentUser = await User.query().findOne({
+        email: singleUser.email,
+      });
+      if (!currentUser) {
+        await User.query().insert(singleUser);
+      }
+    }
   }
 }
 

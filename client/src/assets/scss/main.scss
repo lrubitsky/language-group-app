@@ -15,7 +15,6 @@
 
 .main {
   flex: 1;
-  // margin-top: 5rem;
 }
 
 h1, h2 {
@@ -69,20 +68,27 @@ h3 {
   box-shadow: 0 0 5px rgba(121, 28, 28, 0.3);
   border-width: 3px;
   margin-top: 2rem;
-  margin-left: 10;
-  margin-right: 10rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
   padding: 2rem;
-  width: 75%;
   text-align: center;
   transition: box-shadow 0.3s ease;
-}
-.cell {
-  padding-left: 10%;
-  padding-right: 10%;
 }
 
 .info-block:hover {
   box-shadow: 0 0 10px rgba(121, 28, 28, 0.7);
+}
+
+.group-info {
+  @extend.info-block;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-wrap-list {
+  white-space: nowrap;
 }
 
 .map-area {

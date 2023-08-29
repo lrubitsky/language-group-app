@@ -16,7 +16,7 @@ class Participation extends Model {
     };
   }
 
-  static get relationMapping() {
+  static get relationMappings() {
     const { User, LanguageGroup } = require("./index.js");
     return {
       participant: {

@@ -49,12 +49,16 @@ class LanguageGroupSerializer {
     for (const attribute of requiredAttributes) {
       serializedLanguageGroup[attribute] = languageGroup[attribute];
     }
-    const user = await languageGroup.$relatedQuery("creator");
-    const serializedUser = UserSerializer.getProfileOfOne(user);
+    const creator = await languageGroup.$relatedQuery("creator");
+    const serializedCreator = UserSerializer.getProfileOfOne(creator);
 
-    serializedLanguageGroup.participants = await languageGroup.$relatedQuery("participants");
+    const participants = await languageGroup.$relatedQuery("participants");
+    const serializedParticipants = UserSerializer.getProfiles(participants);
 
-    serializedLanguageGroup.creator = serializedUser;
+    serializedLanguageGroup.creator = serializedCreator;
+
+    serializedLanguageGroup.participants = serializedParticipants;
+
     return serializedLanguageGroup;
   }
 }

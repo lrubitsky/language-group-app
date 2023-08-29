@@ -16,7 +16,7 @@ class UserSerializer {
       let serializedUser = {};
       for (const attribute of requiredAttributes) {
         if (attribute === "lastName") {
-          serializedUser[attribute] = user[attribute][0];
+          serializedUser[attribute] = user[attribute][0] + ".";
         } else {
           serializedUser[attribute] = user[attribute];
         }

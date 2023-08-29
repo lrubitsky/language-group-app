@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import JsApiLoaderGoogleMap from "./maps/JsApiLoaderGoogleMap";
 import { Link } from "react-router-dom";
 import JoinButton from "./JoinButton";
+import ParticipationShow from "./ParticipantsShow";
 
 const LanguageGroupShow = (props) => {
   const [languageGroupRecord, setLanguageGroupRecord] = useState({
@@ -22,7 +23,6 @@ const LanguageGroupShow = (props) => {
 
   const languageGroupId = props.computedMatch.params.id;
   const currentUserId = props.user.id;
-  const creatorFullName = `${languageGroupRecord.creator.firstName} ${languageGroupRecord.creator.lastName}`;
 
   // iterate over participants to see if the currentUser is in the list of particpants
   let userIsInGroup = !!participants.find((participant) => {
@@ -39,6 +39,7 @@ const LanguageGroupShow = (props) => {
         throw error;
       }
       const responseBody = await response.json();
+
       setLanguageGroupRecord(responseBody.languageGroup);
       setParticipants(responseBody.languageGroup.participants);
       setSearchQuery(responseBody.languageGroup.placeCategory);
@@ -97,67 +98,39 @@ const LanguageGroupShow = (props) => {
   return (
     <div className="background">
       <h2>Language Group Information</h2>
-      <div className="info-block grid-container">
-        <div className="grid-x grid-margin-x">
-          <div className="cell medium-6">
-            <ul>
-              <strong>Organizer</strong>
-            </ul>
-
-            <ul>
-              <strong>Topic</strong>
-            </ul>
-
-            <ul>
-              <strong>Location</strong>
-            </ul>
-
-            <ul>
-              <strong>Size</strong>
-            </ul>
-
-            <ul>
-              <strong>English level: </strong>
-            </ul>
-          </div>
-
-          <div className="cell medium-6">
-            <ul>
-              {" "}
-              <Link to={`/users/${languageGroupRecord.creatorId}`}>{creatorFullName}</Link>
-            </ul>
-            <ul>{languageGroupRecord.topic}</ul>
-            <ul>{languageGroupRecord.location}</ul>
-            <ul>
-              {languageGroupRecord.minMembers} - {languageGroupRecord.maxMembers} people
-            </ul>
-            <ul>{languageGroupRecord.englishLevel}</ul>
+      <div className="group-info container">
+        <h2>{languageGroupRecord.title}</h2>
+        <div className="grid-container">
+          <div className="grid-x grid-margin-x">
+            <div className="cell small-12">
+              <ul>
+                <li>
+                  <strong>Topic:</strong> {languageGroupRecord.topic}
+                </li>
+                <li>
+                  <strong>Location:</strong> {languageGroupRecord.location}
+                </li>
+                <li>
+                  <strong>Size:</strong> {languageGroupRecord.minMembers} -{" "}
+                  {languageGroupRecord.maxMembers} people
+                </li>
+                <li>
+                  <strong>English level:</strong> {languageGroupRecord.englishLevel}
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
       <div className="info-block">
         <h2>Participants: </h2>
-
-        {/* make into component later */}
-        {participants.length > 0 ? (
-          participants.map((participant, index) => (
-            <span key={index} style={{ display: "inline-block", margin: "10px" }}>
-              <p>
-                <img src={participant.imageUrl} />
-              </p>
-              <span>
-                {participant.firstName} {participant.lastName}
-              </span>
-            </span>
-          ))
-        ) : (
-          <span>No participants yet.</span>
-        )}
+        <ParticipationShow participants={participants} languageGroupRecord={languageGroupRecord} />
       </div>
-      <JoinButton joinGroup={joinGroup} leaveGroup={leaveGroup} userIsInGroup={userIsInGroup} />
-
+      <div className="centered">
+        <JoinButton joinGroup={joinGroup} leaveGroup={leaveGroup} userIsInGroup={userIsInGroup} />
+      </div>
       <p className="centered">
-        {`${languageGroupRecord.creator.firstName} `}
+        {languageGroupRecord.creator.firstName}&nbsp;
         {languageGroupRecord.placeCategory !== "unsure" ? (
           <span>
             wants to meet at a <strong>{languageGroupRecord.placeCategory}</strong>.
@@ -166,7 +139,6 @@ const LanguageGroupShow = (props) => {
           "is unsure of which type of place to meet."
         )}
       </p>
-
       <JsApiLoaderGoogleMap
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
