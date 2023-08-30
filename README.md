@@ -14,17 +14,18 @@ In the app, user can:
 - message members in the group
 
 To install, type the following into the terminal:
-yarn install
-createdb lingosquads_development
-cd server
-yarn migrate:latest
-yarn db:seed
-yarn run dev
+
+- yarn install
+- createdb lingosquads_development
+- cd server
+- yarn migrate:latest
+- yarn db:seed
+- yarn run dev
 
 You can navigate to the homepage with <http://localhost:3000/>.
 
 Sign-in with this username/password:
-username:
+email: email@email.com
 password: password
 
 Technologies used in the site include:
