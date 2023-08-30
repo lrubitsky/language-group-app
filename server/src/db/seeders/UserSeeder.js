@@ -5,6 +5,24 @@ import md5 from "blueimp-md5";
 class UserSeeder {
   static async seed() {
     const fakeUserData = [];
+    const sampleEmail = "email@email.com";
+    const hash = md5(sampleEmail);
+
+    const sampleUser = {
+      email: sampleEmail,
+      cryptedPassword: "password",
+      username: "hlopez8",
+      firstName: "Hugo",
+      lastName: "Lopez",
+      nativeLanguage: "Spanish",
+      englishLevel: "intermediate",
+      ageRange: "25-30",
+      location: "Boston, MA",
+      introduction: "Let's become fluent in English together!",
+      imageUrl: `https://www.gravatar.com/avatar/${hash}?d=robohash`,
+    };
+    fakeUserData.push(sampleUser);
+
     for (let i = 0; i < 100; i++) {
       const firstName = faker.person.firstName();
       const lastName = faker.person.lastName();

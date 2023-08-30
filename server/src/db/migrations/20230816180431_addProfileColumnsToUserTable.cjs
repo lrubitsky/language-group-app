@@ -7,10 +7,10 @@
  */
 exports.up = async (knex) => {
   return knex.schema.table("users", (table) => {
-    table.string("nativeLanguage");
-    table.string("englishLevel");
-    table.string("ageRange");
-    table.string("location");
+    table.string("nativeLanguage").defaultTo("-");
+    table.string("englishLevel").defaultTo("-");
+    table.string("ageRange").defaultTo("-");
+    table.string("location").defaultTo("-");
     table.string("introduction");
   });
 };

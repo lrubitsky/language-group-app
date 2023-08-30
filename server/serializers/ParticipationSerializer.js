@@ -1,6 +1,7 @@
 import { Participation } from "../src/models/index.js";
 import UserSerializer from "./UserSerializer.js";
 import LanguageGroupSerializer from "./LanguageGroupSerializer.js";
+import participationsRouter from "../src/routes/api/v1/participationsRouter.js";
 
 class ParticipationSerializer {
   static async getParticipationInfo(participation) {
@@ -21,6 +22,7 @@ class ParticipationSerializer {
 
       serializedParticipation.languageGroupJoined = serializedGroup;
     } catch (error) {
+      // Handle the error and return an appropriate response
       console.error("Error in ParticipationSerializer:", error);
       throw new Error("Error while serializing participation data.");
     }

@@ -82,6 +82,13 @@ h3 {
 .group-info {
   @extend.info-block;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info {
+  @extend.info-block;
+  display: flex;
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
@@ -158,4 +165,9 @@ h3 {
 .cell {
   text-align: left;
   padding: auto;
+}
+
+.introduction {
+  font-style: italic;
+  text-align: left;
 }

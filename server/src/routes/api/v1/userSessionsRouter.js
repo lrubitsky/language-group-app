@@ -5,6 +5,7 @@ import UserSerializer from "../../../../serializers/UserSerializer.js";
 const sessionRouter = new express.Router();
 
 sessionRouter.post("/", (req, res, next) => {
+  console.log("Authentication route called");
   return passport.authenticate("local", (err, user) => {
     if (err) {
       // eslint-disable-next-line no-console
