@@ -38,6 +38,7 @@ class UserSerializer {
       "introduction",
       "id",
       "imageUrl",
+      "cryptedPassword",
     ];
 
     const serializedUser = {};

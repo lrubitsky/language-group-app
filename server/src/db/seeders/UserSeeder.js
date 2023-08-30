@@ -1,6 +1,7 @@
 import { User } from "../../models/index.js";
 import { faker } from "@faker-js/faker";
 import md5 from "blueimp-md5";
+import bcrypt from "bcrypt";
 
 class UserSeeder {
   static async seed() {
@@ -10,7 +11,7 @@ class UserSeeder {
 
     const sampleUser = {
       email: sampleEmail,
-      cryptedPassword: "password",
+      password: "password",
       username: "hlopez8",
       firstName: "Hugo",
       lastName: "Lopez",
@@ -83,7 +84,7 @@ class UserSeeder {
 
       const user = {
         email: email,
-        cryptedPassword: faker.internet.password({ length: 8 }),
+        password: faker.internet.password({ length: 8 }),
         username: userName,
         firstName: firstName,
         lastName: lastName,
