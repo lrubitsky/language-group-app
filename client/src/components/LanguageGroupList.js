@@ -37,10 +37,13 @@ const LanguageGroupList = (props) => {
     <div className="background">
       <h1>This is the open group list</h1>
       {props.user ? (
-        <>
-          <button className="info-button" onClick={() => setButtonPopup(true)}>
+        <div className="centered">
+          <div className="box">
+            <div className="centered">
+              <button className="plus-button" onClick={() => setButtonPopup(true)}></button>
+            </div>
             Create Group
-          </button>
+          </div>
           <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
             <LanguageGroupForm
               languageGroupList={languageGroupList}
@@ -48,7 +51,7 @@ const LanguageGroupList = (props) => {
               user={props.user}
             />
           </Popup>
-        </>
+        </div>
       ) : (
         <p>Sign-up/sign-in to join and create language groups</p>
       )}
