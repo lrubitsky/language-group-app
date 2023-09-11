@@ -7,7 +7,7 @@ import "../assets/scss/main.scss";
 import RegistrationForm from "./registration/RegistrationForm";
 import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
-import LanguageGroupsList from "./LanguageGroupsList";
+import LanguageGroupList from "./LanguageGroupList";
 import LanguageGroupShow from "./LanguageGroupShow";
 import LandingPage from "./LandingPage";
 import UserOwnProfileShow from "./UserOwnProfileShow";
@@ -38,7 +38,12 @@ const App = (props) => {
           <Route exact path="/users/new" component={RegistrationForm} />
 
           <Route exact path="/user-sessions/new" component={SignInForm} />
-          <Route exact path="/language-groups" component={LanguageGroupsList} />
+          <AuthenticatedRoute
+            exact
+            path="/language-groups"
+            component={LanguageGroupList}
+            user={currentUser}
+          />
 
           <AuthenticatedRoute
             exact

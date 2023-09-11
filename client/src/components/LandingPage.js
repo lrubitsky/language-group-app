@@ -9,7 +9,7 @@ const LandingPage = (props) => {
           <h2>
             <strong>Join a new Lingo Squad today!</strong>
           </h2>
-          <div className="centered">
+          <div className="centered" style={{ height: 400 }}>
             <img src="https://freepngimg.com/save/97452-chatting-png-download-free/512x512" />
           </div>
         </div>
@@ -18,7 +18,7 @@ const LandingPage = (props) => {
       return (
         <div>
           <h1>Welcome to Lingo Squads!</h1>
-          <div className="centered">
+          <div className="centered" style={{ height: 400 }}>
             <img src="https://freepngimg.com/save/97452-chatting-png-download-free/512x512" />
           </div>
         </div>

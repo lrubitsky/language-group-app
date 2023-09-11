@@ -31,6 +31,10 @@ class ParticipationSeeder {
       const highGroup1 = await LanguageGroup.query().findOne("englishLevel", "high");
       const allLevelGroup = await LanguageGroup.query().findOne("englishLevel", "all levels");
 
+      const lowGroupLast = await LanguageGroup.query()
+        .findOne("englishLevel", "low")
+        .orderBy("id", "desc");
+
       const joinData = [
         {
           participantId: lowUser1.id,
@@ -83,6 +87,10 @@ class ParticipationSeeder {
         {
           participantId: highUser3.id,
           languageGroupId: allLevelGroup.id,
+        },
+        {
+          participantId: lowUser2.id,
+          languageGroupId: lowGroupLast.id,
         },
       ];
 
