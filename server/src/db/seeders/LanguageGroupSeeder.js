@@ -52,7 +52,7 @@ class LanguageGroupSeeder {
       const topics = [
         "travel",
         "music",
-        "career",
+        "careers",
         "sports",
         "relationships",
         "community",

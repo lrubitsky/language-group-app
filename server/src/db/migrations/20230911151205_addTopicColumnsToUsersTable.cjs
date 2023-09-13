@@ -6,7 +6,7 @@
  * @param {Knex} knex
  */
 exports.up = async (knex) => {
-  return knex.schema.table("languageGroups", (table) => {
+  return knex.schema.table("users", (table) => {
     table.boolean("travel");
     table.boolean("music");
     table.boolean("careers");
@@ -26,7 +26,7 @@ exports.up = async (knex) => {
  * @param {Knex} knex
  */
 exports.down = (knex) => {
-  return knex.schema.table("languageGroups", (table) => {
+  return knex.schema.table("users", (table) => {
     table.dropColumn("travel");
     table.dropColumn("music");
     table.dropColumn("careers");
