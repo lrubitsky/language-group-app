@@ -56,7 +56,7 @@ class User extends uniqueFunc(Model) {
   }
 
   static get relationMappings() {
-    const { LanguageGroup } = require("./index.js");
+    const { LanguageGroup, Interest } = require("./index.js");
     return {
       languageGroupsCreated: {
         relation: Model.HasManyRelation,
@@ -76,6 +76,18 @@ class User extends uniqueFunc(Model) {
             to: "participations.languageGroupId",
           },
           to: "languageGroups.id",
+        },
+      },
+      interests: {
+        relation: Model.ManyToManyRelation,
+        modelClass: Interest,
+        join: {
+          from: "users.id",
+          through: {
+            from: "interestSelections.userId",
+            to: "interestSelections.interestId",
+          },
+          to: "interests.id",
         },
       },
     };

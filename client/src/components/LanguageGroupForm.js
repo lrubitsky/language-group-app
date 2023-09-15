@@ -79,7 +79,7 @@ const LanguageGroupForm = (props) => {
         />
       </label>
       <label htmlFor="topic">
-        Topic
+        Other Topic
         <input
           id="topic"
           type="text"

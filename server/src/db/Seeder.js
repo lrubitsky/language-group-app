@@ -3,6 +3,8 @@ import { connection } from "../boot.js";
 import LanguageGroupSeeder from "./seeders/LanguageGroupSeeder.js";
 import UserSeeder from "./seeders/UserSeeder.js";
 import ParticipationSeeder from "./seeders/ParticipationSeeder.js";
+import InterestSeeder from "./seeders/InterestSeeder.js";
+import InterestSelectionSeeder from "./seeders/InterestSelectionSeeder.js";
 
 class Seeder {
   static async seed() {
@@ -14,6 +16,12 @@ class Seeder {
 
     console.log("participation seeding in progress");
     await ParticipationSeeder.seed();
+
+    console.log("interest seeding in progress");
+    await InterestSeeder.seed();
+
+    console.log("interest selection seeding in progress");
+    await InterestSelectionSeeder.seed();
 
     console.log("Done!");
     await connection.destroy();
