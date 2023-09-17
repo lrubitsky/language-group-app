@@ -65,7 +65,7 @@ usersRouter.patch("/:id", async (req, res) => {
     const { id } = req.params;
     const updatedUser = await User.query().findById(id);
     await updatedUser.$query().patch(req.body);
-    const serializedUser = await UserSerializer.getProfileOfOne(userData);
+    const serializedUser = await UserSerializer.getProfileOfOne(updatedUser);
     return res.status(200).json({ user: serializedUser });
   } catch (error) {
     console.log(error);

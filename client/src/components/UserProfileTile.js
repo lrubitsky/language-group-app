@@ -53,36 +53,33 @@ const UserProfileTile = (props) => {
             interests.push("music");
             break;
           case 2:
-            interests.push("travel");
-            break;
-          case 3:
             interests.push("careers");
             break;
-          case 4:
+          case 3:
             interests.push("sports");
             break;
-          case 5:
+          case 4:
             interests.push("relationships");
             break;
-          case 6:
+          case 5:
             interests.push("community");
             break;
-          case 7:
+          case 6:
             interests.push("technology");
             break;
-          case 8:
+          case 7:
             interests.push("fashion");
             break;
-          case 9:
+          case 8:
             interests.push("politics");
             break;
-          case 10:
+          case 9:
             interests.push("pets");
             break;
-          case 11:
+          case 10:
             interests.push("food");
             break;
-          case 12:
+          case 11:
             interests.push("movies");
             break;
         }
