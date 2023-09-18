@@ -15,8 +15,6 @@ const LanguageGroupForm = (props) => {
     creatorId: props.user.id,
   });
 
-  console.log("Current user, ", props.user);
-
   const [errors, setErrors] = useState([]);
   const addNewGroup = async () => {
     try {
@@ -42,7 +40,6 @@ const LanguageGroupForm = (props) => {
         const body = await response.json();
         console.log("Post was successful!", body);
         props.setLanguageGroupList(props.languageGroupList.concat(body.languageGroup));
-        console.log("list", props.languageGroupList);
       }
     } catch (err) {
       console.error(`Error in fetch: ${err.message}`);

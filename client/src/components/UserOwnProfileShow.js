@@ -26,7 +26,6 @@ const UserOwnProfileShow = (props) => {
         throw error;
       }
       const responseBody = await response.json();
-      console.log("response body of getCurrentDeats function", responseBody);
       setProfile(responseBody);
     } catch (err) {
       console.error(`Error in Fetch: ${err.message}`);
@@ -34,9 +33,7 @@ const UserOwnProfileShow = (props) => {
   };
   useEffect(() => {
     getCurrentUserDetails();
-    console.log("USE EFFECT ACTIVATED");
   }, []);
-  console.log("Profile in UserOwnProfileShow:", profile);
 
   return (
     <div className="background">

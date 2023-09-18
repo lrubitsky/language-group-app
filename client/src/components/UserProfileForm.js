@@ -4,29 +4,7 @@ import ErrorList from "./layout/ErrorList";
 import translateServerErrors from "../services/translateServerErrors";
 
 const UserProfileForm = (props) => {
-  console.log("Profile,", props.profile);
-  const [profileUpdate, setProfileUpdate] = useState({
-    // firstName: props.profile.firstName,
-    // lastName: props.profile.lastName || "",
-    // email: props.profile.email || "",
-    // nativeLanguage: props.profile.nativeLanguage || "",
-    // englishLevel: props.profile.englishLevel || "",
-    // location: props.profile.location || "",
-    // ageRange: props.profile.ageRange || "",
-    // introduction: props.profile.introduction || "",
-    // travel: props.profile.travel || false,
-    // music: props.profile.music || false,
-    // careers: props.profile.careers || false,
-    // sports: props.profile.sports || false,
-    // relationships: props.profile.relationships || false,
-    // community: props.profile.community || false,
-    // technology: props.profile.technology || false,
-    // fashion: props.profile.fashion || false,
-    // politics: props.profile.politics || false,
-    // pets: props.profile.pets || false,
-    // food: props.profile.food || false,
-    // movies: props.profile.movies || false,
-  });
+  const [profileUpdate, setProfileUpdate] = useState({});
 
   const [errors, setErrors] = useState([]);
 
@@ -72,10 +50,8 @@ const UserProfileForm = (props) => {
 
     if (targetInput.type === "checkbox") {
       value = targetInput.checked;
-      console.log("checked value, ", value);
     } else {
       value = targetInput.value;
-      console.log("unchecked value, ", value);
     }
 
     setProfileUpdate({

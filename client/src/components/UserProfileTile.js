@@ -26,7 +26,6 @@ const UserProfileTile = (props) => {
     food,
     movies,
   } = props.user;
-  console.log("Profile in UserProfileTile:", props.profile);
 
   const getTopicsOfInterest = (props) => {
     const interests = [
