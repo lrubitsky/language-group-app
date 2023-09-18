@@ -6,7 +6,7 @@ import translateServerErrors from "../services/translateServerErrors";
 const UserProfileForm = (props) => {
   console.log("Profile,", props.profile);
   const [profileUpdate, setProfileUpdate] = useState({
-    // firstName: props.profile.firstName || "",
+    // firstName: props.profile.firstName,
     // lastName: props.profile.lastName || "",
     // email: props.profile.email || "",
     // nativeLanguage: props.profile.nativeLanguage || "",
@@ -31,8 +31,6 @@ const UserProfileForm = (props) => {
   const [errors, setErrors] = useState([]);
 
   const currentUserId = props.user.id;
-  const interests = ["America", "Canada", "Mexico"];
-  const [isChecked, setIsChecked] = useState(new Array(interests.length).fill(false));
 
   const updateProfile = async () => {
     try {
@@ -49,6 +47,7 @@ const UserProfileForm = (props) => {
           const body = await response.json();
           console.log("Validation Errors:", body);
           const newErrors = translateServerErrors(body.errors);
+
           console.log("new errors", newErrors);
           return setErrors(newErrors);
         } else {
@@ -58,6 +57,7 @@ const UserProfileForm = (props) => {
         }
       } else {
         const body = await response.json();
+        props.setProfile(body);
         console.log("The patch was successful", body);
       }
     } catch (error) {
@@ -78,10 +78,10 @@ const UserProfileForm = (props) => {
       console.log("unchecked value, ", value);
     }
 
-    setProfileUpdate((prevProfileUpdate) => ({
-      ...prevProfileUpdate,
+    setProfileUpdate({
+      ...profileUpdate,
       [name]: value,
-    }));
+    });
   };
 
   const handleSubmit = (event) => {
@@ -204,6 +204,7 @@ const UserProfileForm = (props) => {
                     name="travel"
                     onChange={handleChange}
                     value={profileUpdate.travel}
+                    checked={props.profile.travel === true ? true : false}
                   />
                   travel
                 </label>
@@ -229,6 +230,7 @@ const UserProfileForm = (props) => {
                     name="careers"
                     onChange={handleChange}
                     value={profileUpdate.careers}
+                    checked={props.profile.careers === true ? true : false}
                   />
                   careers
                 </label>
@@ -241,6 +243,7 @@ const UserProfileForm = (props) => {
                     name="sports"
                     onChange={handleChange}
                     value={profileUpdate.sports}
+                    checked={props.profile.sports === true ? true : false}
                   />
                   sports
                 </label>
@@ -253,6 +256,7 @@ const UserProfileForm = (props) => {
                     name="relationships"
                     onChange={handleChange}
                     value={profileUpdate.relationships}
+                    checked={props.profile.relationships === true ? true : false}
                   />
                   relationships
                 </label>
@@ -265,6 +269,7 @@ const UserProfileForm = (props) => {
                     name="community"
                     onChange={handleChange}
                     value={profileUpdate.community}
+                    checked={props.profile.community === true ? true : false}
                   />
                   community
                 </label>
@@ -277,6 +282,7 @@ const UserProfileForm = (props) => {
                     name="technology"
                     onChange={handleChange}
                     value={profileUpdate.technology}
+                    checked={props.profile.technology === true ? true : false}
                   />
                   technology
                 </label>
@@ -289,6 +295,7 @@ const UserProfileForm = (props) => {
                     name="fashion"
                     onChange={handleChange}
                     value={profileUpdate.fashion}
+                    checked={props.profile.fashion === true ? true : false}
                   />
                   fashion
                 </label>
@@ -301,6 +308,7 @@ const UserProfileForm = (props) => {
                     name="politics"
                     onChange={handleChange}
                     value={profileUpdate.politics}
+                    checked={props.profile.politics === true ? true : false}
                   />
                   politics
                 </label>
@@ -313,6 +321,7 @@ const UserProfileForm = (props) => {
                     name="pets"
                     onChange={handleChange}
                     value={profileUpdate.pets}
+                    checked={props.profile.pets === true ? true : false}
                   />
                   pets
                 </label>
@@ -325,6 +334,7 @@ const UserProfileForm = (props) => {
                     name="food"
                     onChange={handleChange}
                     value={profileUpdate.food}
+                    checked={props.profile.food === true ? true : false}
                   />
                   food
                 </label>
@@ -337,6 +347,7 @@ const UserProfileForm = (props) => {
                     name="movies"
                     onChange={handleChange}
                     value={profileUpdate.movies}
+                    checked={props.profile.movies === true ? true : false}
                   />
                   movies
                 </label>

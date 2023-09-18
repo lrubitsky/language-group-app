@@ -34,7 +34,9 @@ const UserOwnProfileShow = (props) => {
   };
   useEffect(() => {
     getCurrentUserDetails();
+    console.log("USE EFFECT ACTIVATED");
   }, []);
+  console.log("Profile in UserOwnProfileShow:", profile);
 
   return (
     <div className="background">

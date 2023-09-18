@@ -26,66 +26,28 @@ const UserProfileTile = (props) => {
     food,
     movies,
   } = props.user;
+  console.log("Profile in UserProfileTile:", props.profile);
 
   const getTopicsOfInterest = (props) => {
-    const allTopics = [
-      travel,
-      music,
-      careers,
-      sports,
-      relationships,
-      community,
-      technology,
-      fashion,
-      politics,
-      pets,
-      food,
-      movies,
+    const interests = [
+      { name: "travel", value: travel },
+      { name: "music", value: music },
+      { name: "careers", value: careers },
+      { name: "sports", value: sports },
+      { name: "relationships", value: relationships },
+      { name: "community", value: community },
+      { name: "technology", value: technology },
+      { name: "fashion", value: fashion },
+      { name: "politics", value: politics },
+      { name: "pets", value: pets },
+      { name: "food", value: food },
+      { name: "movies", value: movies },
     ];
-    const interests = [];
-    for (let i = 0; i < allTopics.length; i++) {
-      if (allTopics[i] === true) {
-        switch (i) {
-          case 0:
-            interests.push("travel");
-            break;
-          case 1:
-            interests.push("music");
-            break;
-          case 2:
-            interests.push("careers");
-            break;
-          case 3:
-            interests.push("sports");
-            break;
-          case 4:
-            interests.push("relationships");
-            break;
-          case 5:
-            interests.push("community");
-            break;
-          case 6:
-            interests.push("technology");
-            break;
-          case 7:
-            interests.push("fashion");
-            break;
-          case 8:
-            interests.push("politics");
-            break;
-          case 9:
-            interests.push("pets");
-            break;
-          case 10:
-            interests.push("food");
-            break;
-          case 11:
-            interests.push("movies");
-            break;
-        }
-      }
-    }
-    return interests;
+
+    const selectedInterests = interests
+      .filter((interest) => interest.value === true)
+      .map((interest) => interest.name);
+    return selectedInterests;
   };
 
   return (
