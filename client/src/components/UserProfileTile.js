@@ -25,9 +25,9 @@ const UserProfileTile = (props) => {
     pets,
     food,
     movies,
-  } = props.user;
+  } = props.profile;
 
-  const getTopicsOfInterest = (props) => {
+  const getTopicsOfInterest = () => {
     const interests = [
       { name: "travel", value: travel },
       { name: "music", value: music },
@@ -86,7 +86,7 @@ const UserProfileTile = (props) => {
             <ul>{username}</ul>
             <ul>{ageRange}</ul>
             <ul>{englishLevel}</ul>
-            <ul>{location}</ul>
+            <ul>{location ? location : "-"}</ul>
             <ul>{nativeLanguage}</ul>
             <ul>{getTopicsOfInterest().join(", ")}</ul>
           </ul>

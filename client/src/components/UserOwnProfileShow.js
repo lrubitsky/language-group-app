@@ -26,19 +26,21 @@ const UserOwnProfileShow = (props) => {
         throw error;
       }
       const responseBody = await response.json();
+      console.log("response", responseBody);
       setProfile(responseBody);
     } catch (err) {
       console.error(`Error in Fetch: ${err.message}`);
     }
   };
   useEffect(() => {
+    console.log("HI");
     getCurrentUserDetails();
-  }, []);
+  }, [props.user.firstName, profile.firstName, profile.nativeLanguage]);
 
   return (
     <div className="background">
       <h1>Your Profile</h1>
-      <UserProfileTile user={props.user} profile={profile} />
+      <UserProfileTile profile={profile} />
       <br />
       <h3 className="centered">
         <u>Not Shown Publicly</u>
