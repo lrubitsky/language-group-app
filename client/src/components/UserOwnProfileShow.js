@@ -17,7 +17,7 @@ const UserOwnProfileShow = (props) => {
     id: "",
   });
 
-  const getFullNameAndEmail = async () => {
+  const getCurrentUserDetails = async () => {
     try {
       const response = await fetch(`/api/v1/user-sessions/current`);
       if (!response.ok) {
@@ -26,27 +26,35 @@ const UserOwnProfileShow = (props) => {
         throw error;
       }
       const responseBody = await response.json();
+      console.log("response", responseBody);
       setProfile(responseBody);
     } catch (err) {
       console.error(`Error in Fetch: ${err.message}`);
     }
   };
   useEffect(() => {
-    getFullNameAndEmail();
-  }, []);
+    console.log("HI");
+    getCurrentUserDetails();
+  }, [props.user.firstName, profile.firstName, profile.nativeLanguage]);
 
   return (
     <div className="background">
       <h1>Your Profile</h1>
-      <UserProfileTile user={props.user} profile={profile} />
-      <h2>Not Shown Publicly</h2>
+      <UserProfileTile profile={profile} />
+      <br />
+      <h3 className="centered">
+        <u>Not Shown Publicly</u>
+      </h3>
       <div className="info-block">
         <p>
-          Full Name: {profile.firstName} {profile.lastName}
+          <strong>Full Name: </strong> {profile.firstName} {profile.lastName}
         </p>
-        <p>Email: {profile.email} </p>
+        <p>
+          <strong>Email: </strong>
+          {profile.email}{" "}
+        </p>
       </div>
-      <UserProfileForm user={props.user} profile={profile} />
+      <UserProfileForm user={props.user} profile={profile} setProfile={setProfile} />
     </div>
   );
 };

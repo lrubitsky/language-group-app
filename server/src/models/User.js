@@ -38,13 +38,25 @@ class User extends uniqueFunc(Model) {
         ageRange: { type: "string" },
         location: { type: "string" },
         introduction: { type: "string" },
+        travel: { type: ["boolean"] },
+        music: { type: ["boolean"] },
+        careers: { type: ["boolean"] },
+        sports: { type: ["boolean"] },
+        relationships: { type: ["boolean"] },
+        community: { type: ["boolean"] },
+        technology: { type: ["boolean"] },
+        fashion: { type: ["boolean"] },
+        politics: { type: ["boolean"] },
+        pets: { type: ["boolean"] },
+        food: { type: ["boolean"] },
+        movies: { type: ["boolean"] },
         imgUrl: { type: "string" },
       },
     };
   }
 
   static get relationMappings() {
-    const { LanguageGroup } = require("./index.js");
+    const { LanguageGroup, Interest } = require("./index.js");
     return {
       languageGroupsCreated: {
         relation: Model.HasManyRelation,
@@ -64,6 +76,18 @@ class User extends uniqueFunc(Model) {
             to: "participations.languageGroupId",
           },
           to: "languageGroups.id",
+        },
+      },
+      interests: {
+        relation: Model.ManyToManyRelation,
+        modelClass: Interest,
+        join: {
+          from: "users.id",
+          through: {
+            from: "interestSelections.userId",
+            to: "interestSelections.interestId",
+          },
+          to: "interests.id",
         },
       },
     };

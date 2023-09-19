@@ -11,6 +11,18 @@ const UserProfileShow = (props) => {
     ageRange: "",
     location: "",
     introduction: "",
+    travel: "",
+    music: "",
+    careers: "",
+    sports: "",
+    relationships: "",
+    community: "",
+    technology: "",
+    fashion: "",
+    politics: "",
+    pets: "",
+    food: "",
+    movies: "",
     id: "",
   });
 
